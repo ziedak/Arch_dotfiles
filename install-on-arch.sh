@@ -44,7 +44,7 @@ case $vid in
 esac
 
 # install xorg if not installed
-sudo pacman -S --noconfirm --needed rofi feh xorg xorg-xinit xorg-xinput $DRI xmonad
+sudo pacman -S --noconfirm --needed rofi feh xorg xorg-xinit xorg-xinput $DRI awesome Neovim
 
 # install fonts
 mkdir -p ~/.local/share/fonts
