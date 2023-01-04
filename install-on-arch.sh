@@ -76,7 +76,7 @@ $HELPER -S picom-jonaburg-git\
 	   betterlockscreen
 
 
-copy_config_file{
+copy_config_file(){
 
     if [ -f ~/.config/$1 ]; then
         echo "$1 configs detected, backing up..."
@@ -88,7 +88,7 @@ copy_config_file{
     fi
 }
 
-copy_config_dir{
+copy_config_dir(){
     if [ -d ~/.config/$1 ]; then
         echo "$1 configs detected, backing up..."
         mkdir ~/.config/$1.old && mv ~/.config/$1/* ~/.config/$1.old/
