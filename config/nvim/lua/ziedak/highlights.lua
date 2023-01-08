@@ -19,6 +19,19 @@ local ok, _ = pcall(vim.cmd, "colorscheme base16-onedark")
 -- local ok, _ = pcall(vim.cmd, 'colorscheme base16-solarized-light')
 -- local ok, _ = pcall(vim.cmd, 'colorscheme base16-tomorrow-night')
 
+-- Better editor UI
+o.cursorline = true
+o.number = true
+o.numberwidth = 2
+o.relativenumber = true
+o.signcolumn = "yes"
+o.termguicolors = true
+
+vim.opt.winblend = 0
+vim.opt.wildoptions = 'pum'
+vim.opt.pumblend = 5
+
+
 -- Highlight the region on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = num_au,

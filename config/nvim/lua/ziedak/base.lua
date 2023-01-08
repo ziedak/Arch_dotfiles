@@ -8,10 +8,11 @@ local g = vim.g
 local o = vim.o
 local opt = vim.opt
 
--- cmd('syntax on')
--- vim.api.nvim_command('filetype plugin indent on')
+vim.scriptencoding = 'utf-8'
+opt.encoding = 'utf-8'
+opt.fileencoding = 'utf-8'
 
-o.termguicolors = true
+
 -- o.background = 'dark'
 
 -- Do not save when switching buffers
@@ -24,30 +25,23 @@ o.updatetime = 200
 -- Number of screen lines to keep above and below the cursor
 o.scrolloff = 8
 
--- Better editor UI
-o.number = true
-o.numberwidth = 2
-o.relativenumber = true
-o.signcolumn = "yes"
-o.cursorline = true
+
 
 -- Better editing experience
-o.expandtab = true
-o.smarttab = true
-o.cindent = true
 o.autoindent = true
-o.wrap = true
-o.textwidth = 300
-o.tabstop = 4
-o.shiftwidth = 4
-o.softtabstop = -1 -- If negative, shiftwidth value is used
+o.cindent = true
+o.expandtab = true
 o.list = true
 o.listchars = "trail:·,nbsp:◇,tab:→ ,extends:▸,precedes:◂"
+o.shiftwidth = 4
+o.smarttab = true
+o.softtabstop = -1 -- If negative, shiftwidth value is used
+o.tabstop = 4
+o.textwidth = 300
 -- o.listchars = 'eol:¬,space:·,lead: ,trail:·,nbsp:◇,tab:→-,extends:▸,precedes:◂,multispace:···⬝,leadmultispace:│   ,'
 -- o.formatoptions = 'qrn1'
 
--- Makes neovim and host OS clipboard play nicely with each other
-o.clipboard = "unnamedplus"
+
 
 -- Case insensitive searching UNLESS /C or capital in search
 o.ignorecase = true
@@ -55,9 +49,9 @@ o.smartcase = true
 
 -- Undo and backup options
 o.backup = false
-o.writebackup = false
-o.undofile = true
 o.swapfile = false
+o.undofile = true
+o.writebackup = false
 -- o.backupdir = '/tmp/'
 -- o.directory = '/tmp/'
 -- o.undodir = '/tmp/'
@@ -88,3 +82,34 @@ opt.mouse = "a"
 -- Map <leader> to space
 g.mapleader = " "
 g.maplocalleader = " "
+
+
+vim.wo.number = true
+
+vim.opt.title = true
+vim.opt.smartindent = true
+vim.opt.hlsearch = true
+vim.opt.showcmd = true
+vim.opt.cmdheight = 1
+vim.opt.laststatus = 2
+vim.opt.shell = 'alecretty'
+vim.opt.backupskip = { '/tmp/*', '/private/tmp/*' }
+vim.opt.inccommand = 'split'
+vim.opt.breakindent = true
+vim.opt.wrap = false -- No Wrap lines
+vim.opt.backspace = { 'start', 'eol', 'indent' }
+vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
+vim.opt.wildignore:append { '*/node_modules/*' }
+
+-- Undercurl
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
+-- Turn off paste mode when leaving insert
+vim.api.nvim_create_autocmd("InsertLeave", {
+  pattern = '*',
+  command = "set nopaste"
+})
+
+-- Add asterisks in block comments
+vim.opt.formatoptions:append { 'r' }

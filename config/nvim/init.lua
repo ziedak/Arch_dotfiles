@@ -1,5 +1,6 @@
-require("dt.base") -- General Settings
-require("dt.highlights") -- Colourscheme and other highlights
-require("dt.maps") -- Keymaps
-require("dt.plugins") -- Plugins
-require("dt.bootstrap") -- Packer Auto-Installer
+require("ziedak.base") -- General Settings
+require("ziedak.highlights") -- Colourscheme and other highlights
+require("ziedak.maps") -- Keymaps
+require("ziedak.macros") -- ;qcros
+require("ziedak.plugins") -- Plugins
+require("ziedak.bootstrap") -- Packer Auto-Installer
