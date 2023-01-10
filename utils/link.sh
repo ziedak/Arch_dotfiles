@@ -1,13 +1,15 @@
-
 # Define a function which rename a `target` file to `target.backup` if the file
 # exists and if it's a 'real' file, ie not a symlink
-
+DOTFILES_ROOT=$(pwd -P)
 backup() {
   target=$1
-  if [! -e "$target" ]; then return
-  backup=~"~/backup/$(date '+%Y-%m-%d')"
+  if [! -e "$target" ]; then
+      return 0 
+  fi
+  
+  backup="~/backup/$(date '+%Y-%m-%d')"
 
-  [ ! -d "$backup" ] mkdir $backup
+  [ ! -d "$backup" ] && mkdir $backup
   mv "$target" "$backup/$target.old"
   greenprint "-> Moved your old $target config file to $backup/$target.old"
   
@@ -32,24 +34,24 @@ link_file () {
 
       else
 
-        user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
+        yellowprint "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
         [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
-        read -n 1 action
+        read -n 1 -p action
 
         case "$action" in
-          o )
+          [o])
             overwrite=true;;
-          O )
+          [O])
             overwrite_all=true;;
-          b )
+          [b])
             backup=true;;
-          B )
+          [B])
             backup_all=true;;
-          s )
+          [s])
             skip=true;;
-          S )
+          [S])
             skip_all=true;;
-          * )
+          [*])
             ;;
         esac
 
@@ -61,44 +63,43 @@ link_file () {
     backup=${backup:-$backup_all}
     skip=${skip:-$skip_all}
 
-    if [ "$overwrite" == "true" ] then
+    if [ "$overwrite" == "true" ]; then
       rm -rf "$dst"
       greenprint "removed $dst"
     fi
 
-    if [ "$backup" == "true" ] then
+    if [ "$backup" == "true" ]; then
       backup "$dst" 
     fi
 
-    if [ "$skip" == "true" ] then
+    if [ "$skip" == "true" ]; then
       greenprint "skipped $src"
     fi
   fi
 
   if [ "$skip" != "true" ]  # "false" or empty
   then
-    ln -s "$1" "$2"
+    ln -sv $1 $2
     greenprint "linked $1 to $2"
   fi
 }
 
 install_configs () {
-  info 'installing dotfiles'
+  blueprint 'installing dotfiles'
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find -H . -name '*.symlink')
+  for src in $(find -H "$DOTFILES_ROOT" -name '*.symlink')
   do
-    dst="~/.config/$(basename "${src%.*}")"
-    link_file "$src" "$dst"
+    dst="$HOME/.config/$(basename "${src%.*}")"
+
     echo "$src  $dst"
+    link_file "$src" "$dst"
   done
 
   for src in $(find -H ./home  -name '*.symlink' )
   do
-    dst="~/$(basename "${src%.*}")"
+    dst="$HOME/$(basename "${src%.*}")"
     link_file "$src" "$dst"
-    echo "$src  $dst"
   done
 }
-install_configs 

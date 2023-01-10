@@ -1,5 +1,8 @@
 #!/bin/env bash
 
+source ./utils/colors.sh
+source ./utils/link.sh
+
 #Default vars
 DOTFILES_ROOT=$(pwd -P)
 HELPER="paru"
@@ -21,14 +24,14 @@ install_fonts() {
 
 # does full system update
 echo "Doing a system update, cause stuff may break if it's not the latest version..."
-sudo pacman --noconfirm -Syu
+#sudo pacman --noconfirm -Syu
 
 echo "###########################################################################"
 echo "Will do stuff, get ready"
 echo "###########################################################################"
 
 # install base-devel if not installed
-sudo pacman -S --noconfirm --needed base-devel wget git
+#sudo pacman -S --noconfirm --needed base-devel wget git
 
 # choose video driver
 echo "1) xf86-video-intel 	2) xf86-video-amdgpu 3) nvidia 4) vmware 5) Skip"
