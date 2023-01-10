@@ -1,5 +1,8 @@
+[user]
+  name = Zied Akremi
+  email = ziedakremi@gmail.com
 [alias]
-br = branch
+  br = branch
   ci = commit
   co = checkout
   df = diff
