@@ -27,29 +27,29 @@ map("n", "<leader>fw", "<CMD>Telescope live_grep<CR>")
 map("n", "<leader>ht", "<CMD>Telescope colorscheme<CR>")
 
 -- Increment/decrement
-keymap.set('n', '+', '<C-a>')
-keymap.set('n', '-', '<C-x>')
+map('n', '+', '<C-a>')
+map('n', '-', '<C-x>')
 
 -- Delete a word backwards
-keymap.set('n', 'dw', 'vb"_d')
+map('n', 'dw', 'vb"_d')
 
 -- Select all
-keymap.set('n', '<C-a>', 'gg<S-v>G')
+map('n', '<C-a>', 'gg<S-v>G')
 
 -- New tab
-keymap.set('n', 'te', ':tabedit')
+map('n', 'te', ':tabedit')
 -- Split window
-keymap.set('n', 'ss', ':split<Return><C-w>w')
-keymap.set('n', 'sv', ':vsplit<Return><C-w>w')
+map('n', 'ss', ':split<Return><C-w>w')
+map('n', 'sv', ':vsplit<Return><C-w>w')
 -- Move window
-keymap.set('n', '<Space>', '<C-w>w')
-keymap.set('', 'sh', '<C-w>h')
-keymap.set('', 'sk', '<C-w>k')
-keymap.set('', 'sj', '<C-w>j')
-keymap.set('', 'sl', '<C-w>l')
+-- map('n', '<Space>', '<C-w>w')
+map('', 'sh', '<C-w>h')
+map('', 'sk', '<C-w>k')
+map('', 'sj', '<C-w>j')
+map('', 'sl', '<C-w>l')
 
 -- Resize window
-keymap.set('n', '<C-w><left>', '<C-w><')
-keymap.set('n', '<C-w><right>', '<C-w>>')
-keymap.set('n', '<C-w><up>', '<C-w>+')
-keymap.set('n', '<C-w><down>', '<C-w>-')
+map('n', '<C-w><left>', '<C-w><')
+map('n', '<C-w><right>', '<C-w>>')
+map('n', '<C-w><up>', '<C-w>+')
+map('n', '<C-w><down>', '<C-w>-')

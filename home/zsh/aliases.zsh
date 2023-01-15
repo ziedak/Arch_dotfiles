@@ -1,8 +1,8 @@
-source ./aliases/action.zsh
-source ./aliases/dir_n_file.zsh
-source ./aliases/path.zsh
-source ./aliases/web.zsh
-source ./aliases/extract.zsh
+source $ZSH_DIR/aliases/action.zsh
+source $ZSH_DIR/aliases/dir_n_files.zsh
+source $ZSH_DIR/aliases/path.zsh
+source $ZSH_DIR/aliases/web.zsh
+source $ZSH_DIR/aliases/extract.zsh
 
 ## Auto-generated aliases
 [ -f "${0:a:h}/extra.zshrc" ] && source "${0:a:h}/extra.zshrc"

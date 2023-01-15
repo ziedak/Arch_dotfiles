@@ -1,9 +1,11 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-
+# shortcut to this dotfiles path is $ZSH
+export ZSH_DIR=$HOME/Arch_dotfiles/home/zsh
+export ZGEN_DIR=$HOME/Arch_dotfiles/home/zgen
 [ -d "$ZGEN_DIR" ] || git clone https://github.com/tarjoilija/zgen "$ZGEN_DIR"
-source $ZGEN_SOURCE
+source "$ZGEN_DIR/zgen.zsh"
 if ! zgen saved; then
   echo "Initializing zgen"
   zgen load hlissner/zsh-autopair autopair.zsh
@@ -11,16 +13,18 @@ if ! zgen saved; then
   zgen load zdharma/history-search-multi-word
   zgen load zsh-users/zsh-completions src
   zgen load junegunn/fzf shell
+  zgen load zsh-users/zsh-autosuggestions
+
   export ZSH_TAB_TITLE_DEFAULT_DISABLE_PREFIX=true && zgen load trystan2k/zsh-tab-title
   [ -z "$SSH_CONNECTION" ] && zgen load zdharma/fast-syntax-highlighting
   zgen save
 fi
 
-source $ZDOTDIR/config.zsh
+source $ZSH_DIR/config.zsh
 if [[ $TERM != dumb ]]; then
-  source $ZDOTDIR/keybinds.zsh
-  source $ZDOTDIR/completion.zsh
-  source $ZDOTDIR/aliases.zsh
+  source $ZSH_DIR/keybinds.zsh
+  source $ZSH_DIR/completion.zsh
+  source $ZSH_DIR/aliases.zsh
 
 
   ##
@@ -39,14 +43,14 @@ if [[ $TERM != dumb ]]; then
   
 
   # If you have host-local configuration, this is where you'd put it
-  [ -f ~/.zshenv ] && source ~/.zshenv
+  # [ -f ~/.zshenv ] && source ~/.zshenv
 
 
   autoload -Uz compinit && compinit -u -d $ZSH_CACHE/zcompdump
   autopair-init
 
   # If you have host-local configuration, this is where you'd put it
-  [ -f ~/.zshrc ] && source ~/.zshrc
+  # [ -f ~/.zshrc ] && source ~/.zshrc
 fi
 
 ### BASH INSULTER (works in zsh though) ###
@@ -54,5 +58,11 @@ if [ -f /etc/bash.command-not-found ]; then
     . /etc/bash.command-not-found
 fi
 
+
 ### SETTING THE STARSHIP PROMPT ###
-eval "$(starship init zsh)"
+ eval "$(starship init zsh)"
+
+# zgen load zsh-users/zsh-syntax-highlighting
+  zgen load z-shell/F-Sy-H . main
+
+ export PATH=$PATH:$HOME/bin

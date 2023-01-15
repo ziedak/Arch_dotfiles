@@ -90,7 +90,8 @@ $HELPER -S picom-jonaburg-git\
 	   alacritty         \
        direnv           \
 	   xautolock         \
-	   betterlockscreen
+	   betterlockscreen \
+       starship
 
 
 # wallpaper
@@ -105,7 +106,7 @@ fi
 # config
 install_configs
 
-bin dir
+# bin dir
 if [ -d ~/bin ]; then
     backup "~/bin"
 else

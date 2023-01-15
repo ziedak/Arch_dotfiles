@@ -1,17 +1,18 @@
 # Define a function which rename a `target` file to `target.backup` if the file
 # exists and if it's a 'real' file, ie not a symlink
-DOTFILES_ROOT=$(pwd -P)
+
 backup() {
   target=$1
-  if [! -e "$target" ]; then
-      return 0 
-  fi
   
-  backup="~/backup/$(date '+%Y-%m-%d')"
-
-  [ ! -d "$backup" ] && mkdir $backup
-  mv "$target" "$backup/$target.old"
-  greenprint "-> Moved your old $target config file to $backup/$target.old"
+  backup="$HOME/backup/$(date '+%Y-%m-%d')"
+  # if [ ! -e "$target" ]; then
+  #     return 0 
+  # fi
+echo "aaaaaa"
+  [ ! -d "$backup" ] && mkdir -p $backup
+  mv -f "$target" "$backup/$(basename ${target}).old"
+  
+ # greenprint "-> Moved your old $target config file to $backup/$target.old"
   
 }
 
@@ -36,7 +37,7 @@ link_file () {
 
         yellowprint "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
         [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
-        read -n 1 -p action
+        read -n 1 action
 
         case "$action" in
           [o])
@@ -79,7 +80,7 @@ link_file () {
 
   if [ "$skip" != "true" ]  # "false" or empty
   then
-    ln -sv $1 $2
+    ln -sf $1 $2
     greenprint "linked $1 to $2"
   fi
 }
@@ -97,7 +98,7 @@ install_configs () {
     link_file "$src" "$dst"
   done
 
-  for src in $(find -H ./home  -name '*.symlink' )
+  for src in $(find -H "$DOTFILES_ROOT/home"  -name '*.symlink' )
   do
     dst="$HOME/$(basename "${src%.*}")"
     link_file "$src" "$dst"

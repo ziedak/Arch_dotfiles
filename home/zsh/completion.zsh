@@ -1,4 +1,4 @@
-fpath+=( $ZDOTDIR/completions )
+fpath+=( $ZSH_DIR/completions )
 
 ## Options
 setopt COMPLETE_IN_WORD    # Complete from both ends of a word.

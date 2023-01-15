@@ -20,12 +20,12 @@ local ok, _ = pcall(vim.cmd, "colorscheme base16-onedark")
 -- local ok, _ = pcall(vim.cmd, 'colorscheme base16-tomorrow-night')
 
 -- Better editor UI
-o.cursorline = true
-o.number = true
-o.numberwidth = 2
-o.relativenumber = true
-o.signcolumn = "yes"
-o.termguicolors = true
+vim.opt.cursorline = true
+vim.opt.number = true
+vim.opt.numberwidth = 2
+vim.opt.relativenumber = true
+vim.opt.signcolumn = "yes"
+vim.opt.termguicolors = true
 
 vim.opt.winblend = 0
 vim.opt.wildoptions = 'pum'
