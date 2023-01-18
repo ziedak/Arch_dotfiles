@@ -35,10 +35,10 @@ packer.startup(function(use)
 	use("nvim-telescope/telescope-file-browser.nvim")
 
 	 -- Treesitter Syntax Highlighting
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-	  }
+	-- use {
+	-- 	'nvim-treesitter/nvim-treesitter',
+	-- 	run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+	--   }
 	-- Productivity
 	use("vimwiki/vimwiki")
 	use("jreybert/vimagit")
